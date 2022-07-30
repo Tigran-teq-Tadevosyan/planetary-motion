@@ -58,5 +58,5 @@ Neptun = CelestialBody("Neptun", (0, 200, 0), 1024*pow(10, 23), 13,
 CustomBody = CelestialBody("", (255, 0, 0), 0, 10,
                            math.Vector2(0, 0), math.Vector2(0, -5000 * pow(10, 9)))
 
-Bodies = [CustomBody, Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptun]
+Bodies = [Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptun, CustomBody]
 

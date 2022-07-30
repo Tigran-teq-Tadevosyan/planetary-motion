@@ -20,9 +20,9 @@ frameSize = math.Vector2(1500, 1200)
 
 Window = pygame.display.set_mode(frameSize)
 
-mass_slider =     Slider(Window, 1050, 25, 100, 10, min=0, max=1000000, step=1, initial=1000)
+mass_slider =     Slider(Window, 1050, 25, 100, 10, min=10000, max=1000000000, step=100000, initial=10000)
 angle_slider =    Slider(Window, 1050, 75, 100, 10, min=-90, max=90, step=1)
-velocity_slider = Slider(Window, 1050, 125, 100, 10, min=0, max=100000, step=1)
+velocity_slider = Slider(Window, 1050, 125, 100, 10, min=0, max=50000, step=1, initial=10000)
 scale_slider =    Slider(Window, 1050, 175, 100, 10, min=500000000, max=10000000000, step=1, initial=3000000000)
 speed_slider =    Slider(Window, 1050, 225, 100, 10, min=1000, max=400000, step=1, initial=6000)
 
@@ -43,6 +43,8 @@ staticSunToggle = Toggle(Window, 1240, 342, 40, 15, startOn = False)
 
 font = pygame.font.SysFont('Comic Sans MS', 15)
 
+markerList = [CustomBody.position]
+
 def addCustomBody():
     CustomBody.position = math.Vector2(0, -5000 * pow(10, 9))
     
@@ -50,6 +52,9 @@ def addCustomBody():
 
     theta = np.deg2rad(angle_slider.getValue())
     CustomBody.velocity = velocity_slider.getValue() * math.Vector2(np.sin(theta), np.cos(theta))
+
+    global markerList
+    markerList = [math.Vector2(CustomBody.position)]
     
 startButton = Button(Window, 1150, 375, 100, 25, text='Start', fontSize=25, margin=5, radius=20, onClick= addCustomBody)
     
@@ -64,6 +69,21 @@ def drawBodies(Bodies, Window):
         for body in Bodies:    
             drawText(body.name, Window, frameSize.x/2+body.position.x/scale_slider.getValue(), frameSize.y/2+body.position.y/scale_slider.getValue())
 
+def drawTrace():
+    global markerList
+    markerDiff = (markerList[len(markerList) - 1] - CustomBody.position)
+    
+    if markerDiff.length()/scale_slider.getValue() > 1:
+        markerList.append(math.Vector2(CustomBody.position))
+
+        if len(markerList) > 100:
+            markerList.pop(0)
+
+    if len(markerList) > 1:
+        for i in range(1,len(markerList)):
+            pygame.draw.line(Window, CustomBody.color, frameSize/2+markerList[i-1]/scale_slider.getValue(), frameSize/2+markerList[i]/scale_slider.getValue())
+           
+    
 
 running = True
 clock = pygame.time.Clock()
@@ -88,8 +108,10 @@ while running:
         body.update(tick, Bodies, speed_slider.getValue())
     
     drawBodies(Bodies, Window)
+
+    drawTrace()
     
-    mass_output.setText("Mass: %d kg" % mass_slider.getValue())
+    mass_output.setText("Mass: %.1e kg" % mass_slider.getValue())
     angle_output.setText("Angle: %d deg" % angle_slider.getValue())
     velocity_output.setText("Velocity: %d m/s" % velocity_slider.getValue())
     scale_output.setText("Scale: %.1f bilion m/p" % (scale_slider.getValue()/pow(10,9)))

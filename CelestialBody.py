@@ -16,19 +16,23 @@ class CelestialBody:
     def update(self, millisec, Bodies, speed):
         if self.mass == 0:
             return
-        
+
         dt =  millisec * speed / iteration_count
         for i in range(1, iteration_count):
             a = math.Vector2(0, 0)
             self.position += dt * self.velocity
-
+        
             for body in Bodies:
                 if body.name == self.name:
                     continue
 
                 self2BodyVec = self.position - body.position
                 a += -1 * self2BodyVec.normalize() * G_const * body.mass/self2BodyVec.length_squared()
+
             
+            # if i == 250 and self.name == "":
+            #     print(a)
+                
             self.velocity += dt * a
         
 

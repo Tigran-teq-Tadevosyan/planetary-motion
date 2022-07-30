@@ -14,11 +14,7 @@ from CelestialBody import CustomBody
 
 pygame.init()
 
-frameWidth = 1500
-frameHeight = 1200
-frameSize = math.Vector2(1500, 1200)
-
-Window = pygame.display.set_mode(frameSize)
+Window = pygame.display.set_mode((0,0), pygame.RESIZABLE)
 
 mass_slider =     Slider(Window, 1050, 25, 100, 10, min=10000, max=1000000000, step=100000, initial=10000)
 angle_slider =    Slider(Window, 1050, 75, 100, 10, min=-90, max=90, step=1)
@@ -68,6 +64,7 @@ def drawText(text, Window, x, y):
     Window.blit(textsurface, (x, y))
 
 def drawBodies(Bodies, Window):
+    frameSize = math.Vector2(Window.get_size())
     for body in Bodies:
         pygame.draw.circle(Window, body.color, frameSize/2+body.position/scale_slider.getValue(), body.radius)
     if showNamesToggle.getValue():
@@ -77,6 +74,7 @@ def drawBodies(Bodies, Window):
 def drawTrace():
     global markerList
     markerDiff = (markerList[len(markerList) - 1] - CustomBody.position)
+    frameSize = math.Vector2(Window.get_size())
     
     if markerDiff.length()/scale_slider.getValue() > 1:
         markerList.append(math.Vector2(CustomBody.position))
@@ -126,10 +124,7 @@ while running:
     days_passed += speed*tick/24000
     daysPassed_output.setText("%d earth days have passed" % days_passed)
     
-    # Flip the display
     pygame_widgets.update(events) 
     pygame.display.update()
-
-# Done! Time to quit.
 
 pygame.quit()                   

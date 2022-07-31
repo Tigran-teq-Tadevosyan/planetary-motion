@@ -26,7 +26,7 @@ class CelestialBody:
                 if body.name == self.name:
                     continue
 
-                self2BodyVec =  body.position - self.position
+                self2BodyVec = body.position - self.position
                 a += self2BodyVec.normalize() * G_const * body.mass/self2BodyVec.length_squared()
                 
             self.velocity += dt * a

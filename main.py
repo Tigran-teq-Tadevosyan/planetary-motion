@@ -16,30 +16,30 @@ pygame.init()
 
 Window = pygame.display.set_mode((0,0), pygame.RESIZABLE)
 
-mass_slider =     Slider(Window, 1050, 25, 100, 10, min=10000, max=1000000000, step=100000, initial=10000)
-angle_slider =    Slider(Window, 1050, 75, 100, 10, min=-90, max=90, step=1)
-velocity_slider = Slider(Window, 1050, 125, 100, 10, min=0, max=50000, step=1, initial=10000)
-scale_slider =    Slider(Window, 1050, 175, 100, 10, min=500000000, max=10000000000, step=1, initial=3000000000)
-speed_slider =    Slider(Window, 1050, 225, 100, 10, min=1000, max=400000, step=1, initial=6000)
+mass_slider =     Slider(Window, 50, 25, 100, 10, min=10000, max=1000000000, step=100000, initial=10000)
+angle_slider =    Slider(Window, 50, 75, 100, 10, min=-90, max=90, step=1)
+velocity_slider = Slider(Window, 50, 125, 100, 10, min=0, max=50000, step=1, initial=10000)
+scale_slider =    Slider(Window, 50, 175, 100, 10, min=500000000, max=10000000000, step=1, initial=3000000000)
+speed_slider =    Slider(Window, 50, 225, 100, 10, min=1000, max=400000, step=1, initial=6000)
 
-mass_output =     TextBox(Window, 1175, 15, 175, 30, fontSize=25)
-angle_output =    TextBox(Window, 1175, 65, 175, 30, fontSize=25)
-velocity_output = TextBox(Window, 1175, 115, 175, 30, fontSize=25)
-scale_output =    TextBox(Window, 1175, 165, 175, 30, fontSize=25)
-speed_output =    TextBox(Window, 1175, 215, 175, 30, fontSize=25)
-daysPassed_output=TextBox(Window, 1050, 265, 300, 30, fontSize=25)
+mass_output =     TextBox(Window, 175, 15, 175, 30, fontSize=25)
+angle_output =    TextBox(Window, 175, 65, 175, 30, fontSize=25)
+velocity_output = TextBox(Window, 175, 115, 175, 30, fontSize=25)
+scale_output =    TextBox(Window, 175, 165, 175, 30, fontSize=25)
+speed_output =    TextBox(Window, 175, 215, 175, 30, fontSize=25)
+daysPassed_output=TextBox(Window, 50, 265, 300, 30, fontSize=25)
 
-showNamesLabel = TextBox(Window, 1050, 300, 300, 30, fontSize=25)
+showNamesLabel = TextBox(Window, 50, 300, 300, 30, fontSize=25)
 showNamesLabel.setText("Show planet names: ")
-showNamesToggle = Toggle(Window, 1240, 307, 40, 15, startOn = True)
+showNamesToggle = Toggle(Window, 240, 307, 40, 15, startOn = True)
 
-staticSunLabel = TextBox(Window, 1050, 335, 300, 30, fontSize=25)
+staticSunLabel = TextBox(Window, 50, 335, 300, 30, fontSize=25)
 staticSunLabel.setText("Static Sun: ")
-staticSunToggle = Toggle(Window, 1240, 342, 40, 15, startOn = False)
+staticSunToggle = Toggle(Window, 240, 342, 40, 15, startOn = False)
 
-drawTraceLabel = TextBox(Window, 1050, 370, 300, 30, fontSize=25)
+drawTraceLabel = TextBox(Window, 50, 370, 300, 30, fontSize=25)
 drawTraceLabel.setText("Draw trace: ")
-drawTraceToggle = Toggle(Window, 1240, 377, 40, 15, startOn = True)
+drawTraceToggle = Toggle(Window, 240, 377, 40, 15, startOn = True)
 
 font = pygame.font.SysFont('Comic Sans MS', 15)
 
@@ -57,7 +57,7 @@ def addCustomBody():
     global markerList
     markerList = [math.Vector2(CustomBody.position)]
     
-startButton = Button(Window, 1150, 425, 100, 25, text='Start', fontSize=25, margin=5, radius=20, onClick = addCustomBody)
+startButton = Button(Window, 150, 425, 100, 25, text='Start', fontSize=25, margin=5, radius=20, onClick = addCustomBody)
     
 def drawText(text, Window, x, y):
     textsurface = font.render(text, False, (0, 0, 0))
@@ -88,7 +88,7 @@ def drawTrace():
 
 running = True
 clock = pygame.time.Clock()
-fps = 30
+fps = 60
 
 days_passed = 0
 

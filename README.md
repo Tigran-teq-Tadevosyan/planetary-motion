@@ -6,7 +6,7 @@ This is a basic simulation of planetary motion of solar system. The inner workin
 
 ## Prerequisite and Excution
 
-Nessecery prerequisite are pygame, pygame_widgets and numpy. They can be by running following command in the terminal` 
+Necessary prerequisite are pygame, pygame_widgets and numpy. They can be by running following command in the terminal` 
   ```shell
   pip install pygame pygame_widgets numpy
   ```

@@ -15,7 +15,4 @@ You can run the program by typing following line in the terminal (after cd-ing t
   python main.py
   ```
   
-## Some Screenshots
-
-![alt text](https://raw.githubusercontent.com/Tigran-teq-Tadevosyan/planetary-motion/main/files/demo.mp4)
 ![alt text](https://raw.githubusercontent.com/Tigran-teq-Tadevosyan/planetary-motion/main/files/screenshot.png)

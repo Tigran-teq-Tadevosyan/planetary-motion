@@ -2,6 +2,10 @@
 .swp
 *.py~
 
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
